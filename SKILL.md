@@ -214,4 +214,6 @@ skill 做不了，别硬试，也别假装做完了：
 - `scripts/preflight.sh` — 环境检查
 - `PORTABLE.md` — 模板全部内联的单文件版，**用来发给别人**（别的 AI 只拿到一个文件也能跑）
 
+**互补**：Cloudflare 有官方 skills（github.com/cloudflare/skills，覆盖全平台）和 MCP 服务器（mcp.cloudflare.com）。遇到超出本 skill 范围的平台深度问题（Durable Objects、R2、Terraform 等），优先引用户装官方 skill 或查在线文档，别硬答。本 skill 的独有价值是免费额度铁律、小白流程和沙盒实战坑。
+
 **维护注意**：改了本文件或 assets/ 里的模板，同步改 PORTABLE.md，两边不一致就是坑。
