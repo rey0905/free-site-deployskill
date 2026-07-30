@@ -38,12 +38,21 @@ else
   bad "没有 npx"
 fi
 
-# 登录状态。这一步失败必须停下来让用户自己跑 npx wrangler login，skill 代不了。
-WHOAMI="$(npx --no-install wrangler whoami 2>&1)"
-if printf '%s' "$WHOAMI" | grep -qiE 'You are logged in|associated with the email'; then
-  ok "已登录 Cloudflare：$(printf '%s' "$WHOAMI" | grep -oiE '[a-z0-9._%+-]+@[a-z0-9.-]+' | head -1)"
+# 登录状态。登录本身必须用户自己跑 npx wrangler login，skill 代不了。
+# 注意：wrangler 未安装时 npx --no-install 会静默失败，不能据此断言"未登录"。
+if [ -n "$WRANGLER_VERSION" ]; then
+  WHOAMI="$(npx --no-install wrangler whoami 2>&1)"
+  if printf '%s' "$WHOAMI" | grep -qiE 'You are logged in|associated with the email'; then
+    ok "已登录 Cloudflare：$(printf '%s' "$WHOAMI" | grep -oiE '[a-z0-9._%+-]+@[a-z0-9.-]+' | head -1)"
+  else
+    bad "未登录 Cloudflare —— 停下来让用户执行: npx wrangler login"
+  fi
 else
-  bad "未登录 Cloudflare —— 停下来让用户执行: npx wrangler login"
+  if ls "$HOME/Library/Preferences/.wrangler/config/default.toml" "$HOME/.config/.wrangler/config/default.toml" >/dev/null 2>&1; then
+    warn "wrangler 未安装但检测到登录配置 —— 大概率已登录，部署前跑 npx wrangler whoami 确认"
+  else
+    warn "wrangler 未安装，登录状态未知 —— 部署前跑 npx wrangler whoami 确认，未登录再让用户 login"
+  fi
 fi
 
 echo

@@ -28,6 +28,18 @@
 
 **大陆用户访问不稳定** — `*.pages.dev` 在中国大陆可达性时好时坏，自定义域名走 Cloudflare 代理也帮助有限，这是网络环境问题，Cloudflare 侧无解。主要受众在大陆的话如实告诉用户：短期能用但别指望稳定，长期正解是国内主机 + ICP 备案。本 skill 的「前端只调 `/api/...` 相对路径、不写死 Cloudflare 概念」规则就是为这种迁移留的门——迁移时后端在新家复刻同样路径，前端一行不改。
 
+## 沙盒 IDE（Cursor 等）
+
+在带沙盒的 IDE 代理里执行本 skill 时的三个典型症状，全部来自真实测试：
+
+**工作区外写入被拒、workspace 显示 unknown** — 沙盒设计如此。正确动作：让用户把项目文件夹用 File → Open Folder 开成工作区，然后在工作区内干活。**绝不尝试绕过**——不加 `required_permissions` 之类的参数、不提权、不开子代理绕。绕过尝试本身就是错误行为，即使成功了也意味着在用户不知情的地方写文件。
+
+**gh 报 "token in keyring is invalid"，且所有账号都"失效"** — 八成是假象：沙盒读不到 macOS 钥匙串，gh 拿不到 token 就报 invalid。所有账号同时"失效"是识别标志（真过期不会这么整齐）。先让用户在**系统终端**跑 `gh auth status` 验证；真终端有效，就把需要凭据的命令（clone、push、`wrangler login`）挪到系统终端让用户跑，**不要引导用户重新登录**——那会白白作废好的 token。
+
+**私有仓库探测 404** — 匿名访问私有仓库的正常表现，不代表仓库不存在或配置错了。clone 交给用户在系统终端做（见「必须停下来」清单），拿到本地代码再继续。
+
+**wrangler 一般不受钥匙串问题影响** — 它的 OAuth token 存在配置文件里（`~/Library/Preferences/.wrangler/` 或 `~/.config/.wrangler/`），沙盒通常读得到。preflight 报"未登录"前先确认 wrangler 真的装了——`npx --no-install` 在未安装时会静默失败，看起来像未登录。
+
 ## 后端语言
 
 **Workers 只跑 JS/TS/WASM** — 用户的 AI 写的后端如果是 Python（Flask/FastAPI/Django/Streamlit）、PHP、Ruby 等，推不上 Pages Functions，这是硬边界，不是配置问题。停下来向用户说明两条路：① 前端照常上线，后端照本 skill 的骨架移植成 Functions（小 CRUD 移植很快，认证直接用 auth-recipe 现成的）；② 后端放别家（Render/Fly 等有免费档但会休眠，额度自查）。Express/Node 后端同样不能直接跑（Workers 不是 Node），但 JS 逻辑照搬到 Functions 里改动最小。前端用什么框架（React/Vue/Svelte/纯 HTML）都无所谓，能构建成静态文件就行。
