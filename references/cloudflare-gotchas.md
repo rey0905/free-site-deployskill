@@ -110,6 +110,8 @@
 
 **secrets 泄进 git** — `wrangler.toml` 是进版本库的。密钥走 `wrangler pages secret put`（CLI 分支）或面板环境变量（Git 分支）。Git 分支记得 production 和 preview 两套都填。
 
+**开不了浏览器的环境（CI、纯 SSH 服务器），OAuth 走不通** — wrangler 认 `CLOUDFLARE_API_TOKEN` 环境变量，有 token 就不需要 login。用户在 dashboard（My Profile → API Tokens）用最小权限模板创建，`export CLOUDFLARE_API_TOKEN=...` 后 wrangler 直接可用。**安全边界**：token 等于账号操作权，创建和保管都是用户的事——AI 不索要 token 内容、不把它写进任何文件、聊天里出现了要提醒用户去 dashboard 撤销重发。默认路线仍然是 OAuth（token 不离开用户机器的配置文件），API token 只作无浏览器环境的备用方案。
+
 ## 架构
 
 **Pages Functions 没有 Cron Triggers** — 要定时只能另开一个独立 Worker（免费 5 个 trigger），但那会引入跨域。默认方案是「请求时生成 + 结果落表缓存」，用一张 cache 表按天或按参数缓存，天然省额度。

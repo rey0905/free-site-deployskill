@@ -44,6 +44,8 @@ if [ -n "$WRANGLER_VERSION" ]; then
   WHOAMI="$(npx --no-install wrangler whoami 2>&1)"
   if printf '%s' "$WHOAMI" | grep -qiE 'You are logged in|associated with the email'; then
     ok "已登录 Cloudflare：$(printf '%s' "$WHOAMI" | grep -oiE '[a-z0-9._%+-]+@[a-z0-9.-]+' | head -1)"
+  elif printf '%s' "$WHOAMI" | grep -qiE 'fetch failed|Unable to resolve|ENOTFOUND|EAI_AGAIN|connectivity|network connection'; then
+    warn "whoami 网络失败 —— 连不上 Cloudflare API，不等于未登录（沙盒里常见）；在系统终端跑 npx wrangler whoami 确认，别直接让用户重新 login"
   else
     bad "未登录 Cloudflare —— 停下来让用户执行: npx wrangler login"
   fi

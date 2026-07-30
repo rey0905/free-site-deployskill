@@ -69,13 +69,14 @@ L0 静态上线 → L1 同域 `/api/*` → L2 D1 数据库 → L3 账号 → L4 
 
 ### Step 1 探测项目
 
+- **用户给的是 GitHub 链接**（给的是本地文件夹就跳过这条）：先拿代码。匿名 `curl -sI https://github.com/<owner>/<repo>` 探测——200=公开，AI 直接 clone（沙盒拦 git 就下 zip：`codeload.github.com/<owner>/<repo>/zip/refs/heads/main`）；404=按私有处理，停下来让用户系统终端 clone。**绝不为了方便获取建议改 public，更不得代改可见性**。CLI 直推不需要 git，拿到文件即可。
 - 有 package.json：认构建命令和输出目录（Vite=dist）；有 react-router 等 → 需要 SPA fallback；已有 wrangler.toml → 二次运行走增量。
 - **没有 package.json、只有 HTML**（AI 生成页面常态）：无构建，目录本身就是部署目录，`_headers` 放 index.html 旁边。检查内联 `<script>`/`<style>` 和 CDN 引用——见 L0 第 3 步。
 - Next.js SSR 与本流程冲突：问用户是否 `output: 'export'` 纯静态导出。
 - **后端是 Python/PHP 等非 JS 语言**（Flask/FastAPI/Django/Streamlit…）：推不上去，Workers 只跑 JS/TS/WASM。停下来给用户两条路：前端照常上线+后端照本手册骨架移植成 Functions（小 CRUD 移植很快，账号系统下文现成），或后端另找托管。前端框架（React/Vue/Svelte/纯 HTML）无所谓。
 - **文案语言**：本手册模板里用户可见的报错是中文，站点是其他语言就改成对应语言，逻辑不动。CJK 自定义字体一套 5–15 MB，优先系统字体栈或子集化。
 
-再问部署方式：**CLI 直推**（无 git 也行，一条命令上线）或 **GitHub 集成**（push 自动部署，需面板连仓库）。差异只有三处：上线动作、首次配置、环境变量填在哪（CLI 用 `wrangler pages secret put`；面板要 production/preview 两套都填）。
+再问部署方式：**CLI 直推**（无 git 也行，一条命令上线）或 **GitHub 集成**（push 自动部署，需面板连仓库）。差异只有三处：上线动作、首次配置、环境变量填在哪（CLI 用 `wrangler pages secret put`；面板要 production/preview 两套都填）。**用户选定的方式中途走不通（如沙盒拦死 git），停下来说明卡点、让用户重新选，不得静默换路线**——改用户拍板过的决定不是 AI 的权限。
 
 ### Step 2 前置检查
 

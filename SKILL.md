@@ -59,7 +59,11 @@ description: Put an already-designed frontend live on a real public URL, for fre
 
 ### Step 1 探测现有项目
 
-先看清楚再动手。项目分两种：
+**先确定代码来源**（用户给的是本地文件夹就跳过这段，直接探测）：
+
+用户给的是 GitHub 链接时，先把代码拿到本地。匿名探测 `curl -sI https://github.com/<owner>/<repo>` —— 200 = 公开仓库，AI 直接获取：`git clone`，沙盒拦 git 就下 zip（`https://codeload.github.com/<owner>/<repo>/zip/refs/heads/main`，实测可行）；404 = 按私有处理，**停下来**让用户在系统终端 `gh repo clone <owner>/<repo>`。**绝不建议用户把仓库改成 public 来解决获取问题，更不得代为修改可见性**——那是把代码公开给全世界且难以撤销，和"方便 clone"完全不成比例（GitHub Pages 路线要求 public 是另一回事，那里有专门的同意环节）。注意 CLI 直推部署本身不需要 git，拿到文件就够。
+
+拿到代码后再看清楚项目形态。项目分两种：
 
 **A. 有构建流程**（有 package.json）：
 - scripts 和依赖 → 构建命令、框架、输出目录（看 `vite.config.*` 等）
@@ -91,6 +95,8 @@ description: Put an already-designed frontend live on a real public URL, for fre
 | 上线动作 | `npx wrangler pages deploy <outdir>` | `git push` |
 | 首次配置 | `npx wrangler pages project create` | 停下来让用户去面板连仓库 |
 | 环境变量 | `npx wrangler pages secret put KEY` | 面板里填，production 和 preview 两套都要填 |
+
+**用户选定的方式中途走不通，必须回来重新问**。执行中发现所选路线被环境卡死（例：选了 Git 集成但沙盒拦死全部 git 操作），停下来说明卡点、给出剩余选项，让用户重新选。不得静默换成另一条路线、在结尾轻描淡写带过——改用户拍板过的决定不是 AI 的权限。
 
 ### Step 3 前置检查
 
