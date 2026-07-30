@@ -40,6 +40,10 @@
 
 **wrangler 一般不受钥匙串问题影响** — 它的 OAuth token 存在配置文件里（`~/Library/Preferences/.wrangler/` 或 `~/.config/.wrangler/`），沙盒通常读得到。preflight 报"未登录"前先确认 wrangler 真的装了——`npx --no-install` 在未安装时会静默失败，看起来像未登录。
 
+**代理和直连双双失败** — 症状组合（真实案例）：带代理跑 → "Proxy environment variables detected" + fetch failed（沙盒够不到用户本机的代理进程）；清掉代理变量再跑 → 连 `api.cloudflare.com` 的 DNS 都解析不了（沙盒禁直连）。两条路都死 = 沙盒网络隔离，是网络问题不是认证问题，别开"重新 login"的药方。两条正路：① 走 IDE 自身的权限机制申请完整网络权限——弹窗让用户明确点同意的那种，这是合法途径，不是"绕过"；② 网络类命令（`wrangler deploy`、`git push`）挪到系统终端让用户跑，本地操作（build）留在 IDE 里做。
+
+**重试循环毁掉了已有的项目副本** — 真实案例：目录里本来有完整可用的代码，AI 的 clone 重试把它清成只剩半个 `.git`。规则：目录已有内容就先检查再用它；任何"清空重建"必须先问用户；clone 失败的正确处置是停下来报告，不是换姿势反复试。
+
 ## 后端语言
 
 **Workers 只跑 JS/TS/WASM** — 用户的 AI 写的后端如果是 Python（Flask/FastAPI/Django/Streamlit）、PHP、Ruby 等，推不上 Pages Functions，这是硬边界，不是配置问题。停下来向用户说明两条路：① 前端照常上线，后端照本 skill 的骨架移植成 Functions（小 CRUD 移植很快，认证直接用 auth-recipe 现成的）；② 后端放别家（Render/Fly 等有免费档但会休眠，额度自查）。Express/Node 后端同样不能直接跑（Workers 不是 Node），但 JS 逻辑照搬到 Functions 里改动最小。前端用什么框架（React/Vue/Svelte/纯 HTML）都无所谓，能构建成静态文件就行。
