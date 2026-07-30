@@ -21,7 +21,7 @@ description: Put an already-designed frontend live on a real public URL, for fre
 - **一个 Cloudflare 账号或 GitHub 账号**（都免费，不用绑卡）。
 - **完整的 skill 目录**，不只是这个 SKILL.md。`assets/` 是模板，`references/` 是细节，`scripts/preflight.sh` 是环境检查。只拿到这一个文件时，向用户说明缺了模板，或让用户改用 `PORTABLE.md`（模板全部内联的单文件版，适合发给别人）。
 
-给非技术用户执行时：每一步先用人话说这步在干什么，命令结果贴出来，报错先给用户看原文再动手改。
+给非技术用户执行时：每一步先用人话说这步在干什么，命令结果贴出来，报错先给用户看原文再动手改。**交命令给用户自己跑时必须用小白格式**，五要素齐全：打开哪个软件（Mac：Command+空格搜"终端"；Windows：开始菜单搜 PowerShell）→ 复制哪段（一次一条）→ 按回车 → 成功会看到什么 → 把结果贴回来。不要假设用户知道"终端"是什么。可以直接把仓库里的《小白教程.md》发给用户当参照。
 
 ## 第零步：选平台
 

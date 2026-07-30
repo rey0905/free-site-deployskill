@@ -10,6 +10,8 @@ Turn the web page your AI built into a real website, for free — one that you c
 
 ## 中文说明
 
+> **完全没碰过代码？** 直接看 **[《小白教程》](小白教程.md)** ——手把手到"复制这行、粘贴到终端、按回车"的程度，不需要任何编程知识。下面的内容看不懂没关系，教程里都翻译成人话了。
+
 ### 这是什么
 
 一份给 AI 助手读的部署手册。你用 AI（Claude、ChatGPT、Cursor 等）做好了一个网页，但它只在你电脑上——这份手册教你的 AI 把它推到线上，全程免费，不用绑信用卡。
@@ -52,7 +54,8 @@ Cloudflare 免费档：静态页面的访问**不限量**；后端接口 10 万�
 ### 仓库里有什么
 
 ```
-PORTABLE.md            单文件版手册（发给别人用这个）
+小白教程.md            给人看的手把手教程（不懂代码从这里开始）
+PORTABLE.md            给 AI 看的单文件手册（发给你的 AI 用这个）
 SKILL.md               Claude Code skill 主文件
 references/            免费额度表、常见坑、账号系统代码、GitHub Pages 路线
 assets/                模板：安全头、路由回退、后端骨架、数据库初始化
@@ -72,6 +75,8 @@ scripts/preflight.sh   一键体检：环境、项目形态、十几类常见问
 ---
 
 ## English
+
+> **Never touched code?** The step-by-step beginner walkthrough ([小白教程.md](小白教程.md), currently Chinese-only) goes down to "copy this line, paste into Terminal, press Enter" level.
 
 ### What is this
 
