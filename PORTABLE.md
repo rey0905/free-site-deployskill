@@ -608,6 +608,7 @@ function publicUser(user: SessionUser) {
 | 私有仓库探测 404 | 匿名访问的正常表现，clone 让用户在系统终端做 |
 | 带代理 fetch failed、去代理 DNS 又不通 | 沙盒网络隔离：走 IDE 权限弹窗申请完整网络，或网络命令挪系统终端 |
 | clone 重试后项目目录只剩 .git | 重试循环毁了原有副本——已有内容就用，清空重建必须先问用户 |
+| 刚部署完 SSL 报错（CIPHER_MISMATCH） | 打开了带哈希的快照地址，其证书签发滞后；交付用户的永远是 `https://<project>.pages.dev` |
 
 ## 收尾清单
 

@@ -58,6 +58,8 @@
 
 **无构建项目 deploy 后文件数爆炸或速度极慢** — 直接 `wrangler pages deploy .` 把 node_modules、.git 一起推了（2 万文件上限）。要么清理目录，要么把页面文件挪进一个干净的子目录再推。
 
+**刚部署完打开报 `ERR_SSL_VERSION_OR_CIPHER_MISMATCH`** — 打开的是带哈希前缀的部署快照地址（`<hash>.<project>.pages.dev`，比 pages.dev 深两层）。通配符证书只盖一层子域，快照地址要等 Cloudflare 为项目单独签发 `*.<project>.pages.dev` 证书，新项目可能滞后几分钟到几小时。**交给用户的永远是不带哈希的生产地址** `https://<project>.pages.dev`——那个即刻可用；快照地址是历史版本回溯用的，别当交付物发出去。
+
 ## 3D / WebGL / 重资源页面
 
 浏览器渲染的 3D（Three.js、react-three-fiber、Babylon 等）对托管来说仍是纯静态文件，Pages 不限请求不限带宽，本身没问题。会踩的是：
