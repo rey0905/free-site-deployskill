@@ -96,7 +96,7 @@ description: Put an already-designed frontend live on a real public URL, for fre
 
 跑 `scripts/preflight.sh`。它检查 node、wrangler、登录状态，探测项目形态和 CSP 风险。
 
-`wrangler whoami` 失败就**停下来**，让用户自己跑 `npx wrangler login` 完成浏览器 OAuth，等回报成功再继续。不要假装做完了。
+`wrangler whoami` 失败先看**失败类型**再开药方：输出是 "not authenticated" 之类 → 真没登录，停下来让用户跑 `npx wrangler login`；输出是 fetch failed / DNS 解析失败 → 网络问题不是认证问题（沙盒里常见），让用户在**系统终端**跑 `npx wrangler whoami` 确认，别让已登录的用户白白重新授权。两种情况都要等用户回报再继续，不要假装做完了。
 
 ### Step 4 L0 — 静态上线
 

@@ -79,7 +79,7 @@ L0 静态上线 → L1 同域 `/api/*` → L2 D1 数据库 → L3 账号 → L4 
 
 ### Step 2 前置检查
 
-`node -v`（≥20）；`npx wrangler whoami` 不通过 → 停下来让用户 `npx wrangler login`。
+`node -v`（≥20）；`npx wrangler whoami` 不通过先看失败类型：not authenticated → 让用户 `npx wrangler login`；fetch failed / DNS 失败 → 网络问题（沙盒常见），让用户在系统终端跑 whoami 确认，别让已登录的用户重新授权。
 
 ### Step 3 L0 静态上线
 
