@@ -183,7 +183,7 @@ npx wrangler d1 execute <name> --remote --command "SELECT name FROM sqlite_maste
 
 skill 做不了，别硬试，也别假装做完了：
 
-1. `wrangler login` / `gh auth login` 的浏览器 OAuth
+1. `wrangler login` / `gh auth login` 的浏览器 OAuth。**用户可能压根没有账号**——这不是障碍，注册免费且不绑卡，但注册也是用户自己做的事：给出注册地址（Cloudflare: dash.cloudflare.com/sign-up，GitHub: github.com/signup），说明"邮箱注册、免费、不用信用卡"，等用户注册完再回来 login
 2. GitHub 集成分支在 Cloudflare 面板连仓库
 3. 自定义域名的 DNS 记录
 4. GitHub Pages 分支：把仓库设为 public 前，必须让用户明确同意代码公开
