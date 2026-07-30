@@ -1,0 +1,28 @@
+# Cloudflare Pages _headers
+# 必须放在会被拷进构建输出目录的静态目录里（Vite/CRA: public/，Astro/SvelteKit: static/）。
+# 放项目根目录不生效。build 完检查输出目录里有没有这个文件。
+# 免费计划上限 100 条规则。
+#
+# CSP 默认最严。前端确实用到外部资源时，只放宽对应那一条指令，并在这里注明原因。
+# 实测：CSP 和 HSTS 不会应用到 Pages Functions 的响应上（X-Frame-Options、
+# Permissions-Policy、X-Robots-Tag 会），安全关键的头在 Functions 里自己再设一遍。
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), microphone=(), payment=(), usb=()
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-Permitted-Cross-Domain-Policies: none
+  X-DNS-Prefetch-Control: off
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+
+# 最后一行 X-Robots-Tag 是给私人站点挡搜索引擎的。要被收录就删掉那一行。
+
+# 构建产物带内容哈希，可以永久缓存。省的是用户流量，静态请求本身不限量。
+# 路径按实际构建输出调整（Vite 是 /assets/*，Next 静态导出是 /_next/static/*）。
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

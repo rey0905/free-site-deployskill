@@ -1,0 +1,9 @@
+# Cloudflare Pages _redirects
+# 只有客户端路由（react-router / vue-router 之类）才需要这个文件。
+# 多页静态站不要加，会把 404 变成首页。
+#
+# 200 是重写，URL 不变，交给前端路由处理。写成 301/302 会真的跳转，前端路由就废了。
+# /api/* 不用排除：Pages Functions 优先于静态资源和这里的规则。
+# 免费计划上限 2000 条静态 + 100 条动态。
+
+/*    /index.html   200
