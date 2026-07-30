@@ -1,4 +1,4 @@
-# free-site-deploy
+# free-site-deployskill
 
 [中文](#中文说明) | [English](#english)
 
@@ -34,7 +34,7 @@ Turn the web page your AI built into a real website, for free — one that you c
 **方式二：装成 Claude Code skill。** 把整个仓库克隆到 skills 目录：
 
 ```sh
-git clone https://github.com/rey0905/free-site-deploy ~/.claude/skills/cloudflare-deploy
+git clone https://github.com/rey0905/free-site-deployskill ~/.claude/skills/cloudflare-deploy
 ```
 
 之后在 Claude Code 里说"帮我把这个项目上线"，skill 会自动触发。
@@ -97,7 +97,7 @@ For pure showcase pages there is also a simpler GitHub Pages route — the manua
 **Option 2: install as a Claude Code skill.** Clone the repo into your skills directory:
 
 ```sh
-git clone https://github.com/rey0905/free-site-deploy ~/.claude/skills/cloudflare-deploy
+git clone https://github.com/rey0905/free-site-deployskill ~/.claude/skills/cloudflare-deploy
 ```
 
 Then ask Claude Code to "deploy this project" and the skill triggers automatically.
