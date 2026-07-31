@@ -224,3 +224,7 @@ skill 做不了，别硬试，也别假装做完了：
 **互补**：Cloudflare 有官方 skills（github.com/cloudflare/skills，覆盖全平台）和 MCP 服务器（mcp.cloudflare.com）。遇到超出本 skill 范围的平台深度问题（Durable Objects、R2、Terraform 等），优先引用户装官方 skill 或查在线文档，别硬答。本 skill 的独有价值是免费额度铁律、小白流程和沙盒实战坑。
 
 **维护注意**：改了本文件或 assets/ 里的模板，同步改 PORTABLE.md，两边不一致就是坑。
+
+---
+
+© 2026 rey0905 · CC BY-NC 4.0：转载/改编须署名并附 https://github.com/rey0905/free-site-deployskill ，禁止商用；assets/、scripts/ 及供拷贝的代码片段例外（可自由用于任何项目含商业项目）。详见仓库 LICENSE.md。

@@ -140,3 +140,15 @@ scripts/preflight.sh   One-shot checkup: environment, project shape, a dozen com
 ---
 
 *Note: free-tier numbers were verified against Cloudflare's official docs in July 2026 and may change — the manual instructs the AI to re-check before relying on them.*
+
+---
+
+## 授权 / License
+
+手册与文档：**CC BY-NC 4.0** —— 使用须署名并附本仓库链接，禁止商用。
+**模板例外**：`assets/`、`scripts/` 及文中供拷贝的代码可自由用于任何项目（含商业项目）——限制的是手册本身，不是用它部署的网站。
+
+Manuals & docs: **CC BY-NC 4.0** — attribution with a link to this repo required; no commercial use.
+**Template exception**: `assets/`, `scripts/`, and copy-into-your-project code snippets are free for any use, commercial included — the restriction covers the manual itself, not sites deployed with it.
+
+详见 / Full terms: [LICENSE.md](LICENSE.md)
