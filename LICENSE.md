@@ -20,13 +20,15 @@
 
 协议完整法律文本：https://creativecommons.org/licenses/by-nc/4.0/legalcode.zh-hans
 
-### 模板例外（重要）
+### 模板：可商用，但须保留署名
 
-`assets/` 目录下的全部文件（`_headers`、`_redirects`、`wrangler.toml`、Functions 骨架、migration SQL）、`scripts/` 目录下的脚本，以及手册正文中**明确供拷贝进用户项目的代码片段**（如账号系统代码），**不受上述 NC 限制**：
+`assets/` 目录下的全部文件、`scripts/` 目录下的脚本，以及手册正文中供拷贝进用户项目的代码片段（如账号系统代码），**不受 NC 限制**——可以自由用于你自己的任何项目并部署上线，**包括现在或将来商业化的项目**。唯一条件：
 
-- 你可以把它们自由复制进你自己的项目并部署上线，**包括现在或将来商业化的项目**，无需署名。
+- **保留文件中指向本仓库的来源注释行**（形如 `Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill` 的注释），或在你项目的 README 中包含该链接。注释对网站访问者不可见，不影响页面外观。
 
-一句话：**禁止商用的是这份手册本身，不是用这份手册部署出来的网站。**
+在页面上放一个可见的署名链接（如页脚"由 free-site-deployskill 部署"）是受欢迎的，但**不强制**。
+
+一句话：**手册禁止商用；用手册部署的网站随你商用，留下那行注释就行。**
 
 ### 不提供担保
 
@@ -48,13 +50,15 @@ You may copy, redistribute, translate, and adapt this content, provided that:
 
 Full legal text: https://creativecommons.org/licenses/by-nc/4.0/legalcode
 
-### Template exception (important)
+### Templates: commercial use allowed, attribution required
 
-Everything under `assets/` and `scripts/`, plus code snippets in the manuals explicitly intended to be copied into user projects (such as the auth recipe), is **exempt from the NC restriction**:
+Everything under `assets/` and `scripts/`, plus code snippets in the manuals intended to be copied into user projects (such as the auth recipe), is **exempt from the NC restriction** — use it freely in your own projects, **commercial ones included**. The one condition:
 
-- You may freely copy these into your own projects and deploy them, **including projects that are or become commercial**, with no attribution required.
+- **Retain the source-comment line pointing to this repository** (a comment like `Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill`) in the copied files, or include the link in your project's README. The comment is invisible to site visitors.
 
-In one sentence: **the non-commercial restriction applies to this manual itself, not to websites deployed with its help.**
+A visible on-page credit (e.g. a footer link) is welcome but **not required**.
+
+In one sentence: **the manual itself may not be commercialized; sites deployed with it may — just keep the comment line.**
 
 ### No warranty
 

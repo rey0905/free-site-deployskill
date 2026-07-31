@@ -1,4 +1,6 @@
 /**
+ * Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill (请保留此行)
+ *
  * Cloudflare Pages Functions —— /api/* 的全部入口
  *
  * 位置必须是项目根的 functions/api/[[path]].ts。
@@ -79,6 +81,8 @@ export const onRequest = async (context: {
 };
 
 /**
+ * Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill (请保留此行)
+ *
  * 统一 JSON 响应。
  * _headers 里的 CSP 和 HSTS 不会落到 Functions 响应上，所以这里自己带一份安全头。
  * 默认 no-store：接口数据别被 CDN 或浏览器缓存。可缓存的接口显式传 cache-control 覆盖。
@@ -124,6 +128,8 @@ function nullableText(value: unknown, maxLength: number): string | null {
 }
 
 /**
+ * Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill (请保留此行)
+ *
  * 外部 API 代理的模板。前端直连会被 connect-src 'self' 拦，而且会暴露 key。
  * 一定要缓存：既省自己的子请求额度，也省上游的额度。
  */

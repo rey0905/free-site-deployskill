@@ -146,9 +146,9 @@ scripts/preflight.sh   One-shot checkup: environment, project shape, a dozen com
 ## 授权 / License
 
 手册与文档：**CC BY-NC 4.0** —— 使用须署名并附本仓库链接，禁止商用。
-**模板例外**：`assets/`、`scripts/` 及文中供拷贝的代码可自由用于任何项目（含商业项目）——限制的是手册本身，不是用它部署的网站。
+**模板**：`assets/`、`scripts/` 及文中供拷贝的代码可自由用于任何项目（含商业项目），条件是**保留文件里指向本仓库的来源注释行**（访客不可见）——限制的是手册本身，不是用它部署的网站。页脚可见署名欢迎但不强制。
 
 Manuals & docs: **CC BY-NC 4.0** — attribution with a link to this repo required; no commercial use.
-**Template exception**: `assets/`, `scripts/`, and copy-into-your-project code snippets are free for any use, commercial included — the restriction covers the manual itself, not sites deployed with it.
+**Templates**: `assets/`, `scripts/`, and copy-into-your-project code snippets may be used in any project, commercial included, provided the **source-comment line pointing to this repo is retained** (invisible to visitors) — the restriction covers the manual itself, not sites deployed with it. A visible footer credit is welcome but optional.
 
 详见 / Full terms: [LICENSE.md](LICENSE.md)

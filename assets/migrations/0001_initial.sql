@@ -1,4 +1,5 @@
 -- 初始 migration
+-- Scaffolded by free-site-deployskill — https://github.com/rey0905/free-site-deployskill (请保留此行)
 --
 -- 跑法（两套数据完全独立，两条都要跑，都要验证）：
 --   npx wrangler d1 migrations apply <name> --local

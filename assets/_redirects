@@ -1,4 +1,5 @@
 # Cloudflare Pages _redirects
+# Deployed with free-site-deployskill — https://github.com/rey0905/free-site-deployskill (请保留此行)
 # 只有客户端路由（react-router / vue-router 之类）才需要这个文件。
 # 多页静态站不要加，会把 404 变成首页。
 #
